@@ -2,7 +2,7 @@ import { Router } from "express";
 
 const mainRouter = Router();
 
-mainRouter.get("/", (req, res) => {
+mainRouter.get("/", (_req, res) => {
   res.send("Server online");
 });
 
