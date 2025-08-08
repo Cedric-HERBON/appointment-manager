@@ -1,8 +1,8 @@
 # Build
-FROM node:22-alpine3.22
+FROM node:22-alpine3.22 AS appointment-manager-backend-build
 WORKDIR /backend
 COPY package*.json ./
-RUN npm i
+RUN npm install
 COPY tsconfig.json ./
 COPY src ./src
 RUN npm run build
@@ -11,7 +11,7 @@ RUN npm run build
 FROM node:22-alpine3.22
 WORKDIR /backend
 COPY package*.json ./
-RUN npm i --omit=dev
-COPY --from=build /backend/dist ./dist
+RUN npm install --omit=dev
+COPY --from=appointment-manager-backend-build /backend/dist ./dist
 EXPOSE 3000
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/server.js"]
