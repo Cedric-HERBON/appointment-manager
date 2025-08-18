@@ -17,7 +17,7 @@ CREATE TABLE patients (
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     birthdate DATE NOT NULL,
-    adress TEXT,
+    address TEXT,
     phone TEXT,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
@@ -30,7 +30,7 @@ CREATE TABLE practitioners (
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     birthdate DATE NOT NULL,
-    adress TEXT,
+    address TEXT,
     phone TEXT,
     speciality TEXT,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
