@@ -8,38 +8,33 @@ DROP TABLE IF EXISTS appointment_types;
 DROP TABLE IF EXISTS availabilities;
 DROP TABLE IF EXISTS patients;
 DROP TABLE IF EXISTS practitioners;
-DROP TABLE IF EXISTS users;
 
-CREATE TABLE users (
-    id_user UUID PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+
+CREATE TABLE patients (
+    id_patient UUID PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     birthdate DATE NOT NULL,
-    gender TEXT,
     adress TEXT,
     phone TEXT,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE patients (
-    id_patient UUID PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-    id_user UUID NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_patient_user FOREIGN KEY (id_user) REFERENCES users(id_user)
-);
-
 CREATE TABLE practitioners (
     id_practitioner UUID PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-    id_user UUID NOT NULL,
+    firstname TEXT NOT NULL,
+    lastname TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    birthdate DATE NOT NULL,
+    adress TEXT,
+    phone TEXT,
     speciality TEXT,
-    location TEXT,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_practitioner_user FOREIGN KEY (id_user) REFERENCES users(id_user)
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE availabilities (
