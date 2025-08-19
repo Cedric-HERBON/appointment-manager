@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-const statusEnum = {
+const SlotStatus = {
     free: "free",
     occupied: "occupied",
 } as const;
@@ -12,7 +12,7 @@ const AppointmentSlotSchema = z.object({
     id_appointment_type: z.string().trim().pipe(z.uuid()),
     date: z.string().trim().pipe(z.iso.date()),
     hour: z.string().trim().pipe(z.iso.time({ precision: -1})),
-    status: z.enum(statusEnum).nonoptional(),
+    status: z.enum(SlotStatus).nonoptional(),
 }).strict();
 
 export { AppointmentSlotSchema };
