@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import { appointmentSlotMapper } from "../mappers/appointment_slot.mapper";
+import { AppointmentSlotSchema } from "../schemas/appointment_slot.schema";
 
 interface IAppointmentSlotController {
   getAllAppointmentSlots(_req: Request, res: Response): Promise<void>;
@@ -26,9 +27,11 @@ const appointmentSlotController: IAppointmentSlotController = {
     res.status(200).json(result);
   },
   async createAppointmentSlot(req, res) {
-    const { id_practitioner, id_availability, id_appointment_type, date, hour, status } = req.body;
-    const data = { id_practitioner, id_availability, id_appointment_type, date, hour, status };
-    const result = await appointmentSlotMapper.createAppointmentSlot(data);
+    // const { id_practitioner, id_availability, id_appointment_type, date, hour, status } = req.body;
+    // const data = { id_practitioner, id_availability, id_appointment_type, date, hour, status };
+    const { dataParsed } = req.body;
+
+    const result = await appointmentSlotMapper.createAppointmentSlot(dataParsed);
     res.status(201).json(result);
   },
   async updateAppointmentSlot(req, res) {

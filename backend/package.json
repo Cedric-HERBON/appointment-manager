@@ -13,7 +13,7 @@
     "biome:check": "biome check .",
     "biome:format": "biome format . --write",
     "test": "vitest",
-    "test:unit": "vitest run --include tests/**/*.unit.test.ts",
+    "test:unit": "vitest run --dir tests --testNamePattern 'unit'",
     "test:int": "vitest run --include tests/**/*.int.test.ts",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"
@@ -29,6 +29,8 @@
     "@types/node": "^24.1.0",
     "@types/pg": "^8.15.5",
     "@types/sanitize-html": "^2.16.0",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.4",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"

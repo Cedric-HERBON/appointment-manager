@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { isoDateSchema, isoTimeSchema, uuidSchema } from "../utils/templateSchema";
 
 const SlotStatus = {
     free: "free",
@@ -6,13 +7,13 @@ const SlotStatus = {
 } as const;
 
 const AppointmentSlotSchema = z.object({
-    id_appointment_slot: z.string().trim().pipe(z.uuid()).optional(),
-    id_practitioner: z.string().trim().pipe(z.uuid()),
-    id_availability: z.string().trim().pipe(z.uuid()),
-    id_appointment_type: z.string().trim().pipe(z.uuid()),
-    date: z.string().trim().pipe(z.iso.date()),
-    hour: z.string().trim().pipe(z.iso.time({ precision: -1})),
+    id_appointment_slot: uuidSchema.optional(),
+    id_practitioner: uuidSchema,
+    id_availability: uuidSchema,
+    id_appointment_type: uuidSchema,
+    date: isoDateSchema,
+    hour: isoTimeSchema,
     status: z.enum(SlotStatus).nonoptional(),
-}).strict();
+});
 
 export { AppointmentSlotSchema };

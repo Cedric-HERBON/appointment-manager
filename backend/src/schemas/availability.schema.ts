@@ -6,6 +6,6 @@ const AvailabilitySchema = z.object({
     date: z.string().trim().pipe(z.iso.date()),
     start_time: z.string().trim().pipe(z.iso.time({ precision: -1 })),
     end_time: z.string().trim().pipe(z.iso.time({ precision: -1 })),
-}).strict();
+});
 
 export { AvailabilitySchema };
